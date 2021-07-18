@@ -15,23 +15,32 @@ import Contactusjumbotron from "./Others/Contactusjumbotron";
 import axios from "axios";
 import Footer from "./Others/Footer";
 const Home = () => {
-const[email, setEmail] = useState(null);
-const[password, setPassword] = useState(null);
-const [loginmail, setLoginmail] = useState(null);
-const [loginpass, setLoginpass] = useState(null);
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [loginmail, setLoginmail] = useState(null);
+  const [loginpass, setLoginpass] = useState(null);
+  
 
-const submitLogin = async (e)=>{
-  e.preventDefault();
-  const relay = axios.post("https://utteruser.herokuapp.com/api/v1/users/login", {email, password});
-loginmail === email && loginpass === password ? window.location.href="/dashboard" : alert("invalid credentials")
-  console.log=(relay)
-}
-const[feedback, setFeedback] = useState("");
- const handleSubmit= async(e)=>{
-   e.preventDefault();
-   const response= axios.post("https://utteruser.herokuapp.com/api/v1/users/register", {email, password});
-   console.log(response)
- }
+  const submitLogin = async (e) => {
+    e.preventDefault();
+    const relay = await axios.post(
+      "https://utteruser.herokuapp.com/api/v1/users/login",
+      { loginmail, loginpass }
+    );
+    relay.status === "success"
+      ? (window.location.href = "/dashboard")
+      : alert("invalid credentials");
+    console.log (relay);
+  };
+ 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await axios.post(
+      "https://utteruser.herokuapp.com/api/v1/users/register",
+      { email, password }
+    );
+    console.log(response);
+  };
   return (
     <>
       <div className="starter">
@@ -180,17 +189,17 @@ const[feedback, setFeedback] = useState("");
             <div className="d-flex justify-content-end">
               <button
                 type="button"
-                class="btn btn-success me-3" 
+                class="btn btn-success me-3"
                 data-bs-toggle="modal"
                 data-bs-target="#regModal"
               >
                 Register{" "}
               </button>
               <button
-                 type="button"
-                 class="btn btn-warning me-3" 
-                 data-bs-toggle="modal"
-                 data-bs-target="#loginModal"
+                type="button"
+                class="btn btn-warning me-3"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
               >
                 Sign in
               </button>
@@ -296,7 +305,7 @@ const[feedback, setFeedback] = useState("");
             </div>
           </div>
           <div className="row " id="thirdrow">
-            <div className="col-md-8 ">
+            <div className="col-md-8">
               <div className="row">
                 <div className="col-md-6 col-12">
                   <div class="d-flex pt-4 pb-2">
@@ -534,99 +543,11 @@ const[feedback, setFeedback] = useState("");
           <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header text-center p-4">
-                {
-                  
-                }
+                
                 <h3 class="modal-title" id="regBackdropLabel">
                   Registration
                 </h3>
-                
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <div className="row ">
-                  <div className="col-md-6 bg-success pl-3">
-                    <img src="./images/plogin.svg" />
-                  </div>
-                  <div className="col-md-6">
-                    <form
-                      className="p-5"
-                      style={{ maxWidth: "450px", margin: "auto" }}
-                      onSubmit={submitLogin}
-                    >
-                      <div className="row">
-                        <div className="col-md-12">
-                          <label for="email" className="my-2">
-                            Email
-                          </label>
-                          <input
-                          type="email"
-                            className="input-field form-control"
-                            placeholder="Enter Email"
-                            onChange={
-                              ({target: {value}})=>setEmail(value)
-                            }
-                          />
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col-md-12">
-                          <label for="email" className="my-2">
-                            Password
-                          </label>
-                          <input
-                          type="password"
-                            className="input-field form-control"
-                            placeholder="Enter password"
-                            onChange={
-                              ({target: {value}})=>setPassword(value)
-                            }
-                          />
-                        </div>
-                      </div>
-                      <div className="row py-4">
-                        <div className="col-md-12">
-                          <button
-                          type="submit"
-                            className="btn btn-warning btn-lg"
-                            style={{ width: "100%" }}
-                          >
-                            Submit
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            
-            </div>
-          </div>
-        </div>
-        <div
-          class="modal fade"
-          id="loginModal"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabindex="-1"
-          aria-labelledby="loginBackdropLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header text-center p-4">
-                {
-                  
-                }
-                <h3 class="modal-title" id="loginBackdropLabel">
-                  Login
-                </h3>
-                
+
                 <button
                   type="button"
                   class="btn-close"
@@ -651,11 +572,11 @@ const[feedback, setFeedback] = useState("");
                             Email
                           </label>
                           <input
-                          type="email"
+                            type="email"
                             className="input-field form-control"
                             placeholder="Enter Email"
-                            onChange={
-                              ({target: {value}})=>setLoginmail(value)
+                            onChange={({ target: { value } }) =>
+                              setEmail(value)
                             }
                           />
                         </div>
@@ -666,11 +587,11 @@ const[feedback, setFeedback] = useState("");
                             Password
                           </label>
                           <input
-                          type="password"
+                            type="password"
                             className="input-field form-control"
                             placeholder="Enter password"
-                            onChange={
-                              ({target: {value}})=>setLoginpass(value)
+                            onChange={({ target: { value } }) =>
+                              setPassword(value)
                             }
                           />
                         </div>
@@ -678,7 +599,7 @@ const[feedback, setFeedback] = useState("");
                       <div className="row py-4">
                         <div className="col-md-12">
                           <button
-                          type="submit"
+                            type="submit"
                             className="btn btn-warning btn-lg"
                             style={{ width: "100%" }}
                           >
@@ -690,7 +611,89 @@ const[feedback, setFeedback] = useState("");
                   </div>
                 </div>
               </div>
-            
+            </div>
+          </div>
+        </div>
+        <div
+          class="modal fade"
+          id="loginModal"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="loginBackdropLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header text-center p-4">
+                {}
+                <h3 class="modal-title" id="loginBackdropLabel">
+                  Login
+                </h3>
+
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div className="row ">
+                  <div className="col-md-6 bg-success pl-3">
+                    <img src="./images/plogin.svg" />
+                  </div>
+                  <div className="col-md-6">
+                    <form
+                      className="p-5"
+                      style={{ maxWidth: "450px", margin: "auto" }}
+                      onSubmit={submitLogin}
+                    >
+                      <div className="row">
+                        <div className="col-md-12">
+                          <label for="email" className="my-2">
+                            Email
+                          </label>
+                          <input
+                            type="email"
+                            className="input-field form-control"
+                            placeholder="Enter Email"
+                            onChange={({ target: { value } }) =>
+                              setLoginmail(value)
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-12">
+                          <label for="email" className="my-2">
+                            Password
+                          </label>
+                          <input
+                            type="password"
+                            className="input-field form-control"
+                            placeholder="Enter password"
+                            onChange={({ target: { value } }) =>
+                              setLoginpass(value)
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div className="row py-4">
+                        <div className="col-md-12">
+                          <button
+                            type="submit"
+                            className="btn btn-warning btn-lg"
+                            style={{ width: "100%" }}
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

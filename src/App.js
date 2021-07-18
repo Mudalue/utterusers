@@ -18,9 +18,11 @@ import CampaignHome from "./Component/CampaignHome";
 import Pricing from "./Component/Pricing";
 import Employeexp from "./Component/HomeComponents/Employeexp";
 import Startasurvey from "./Component/Modals/Startasurvey";
-
-
+import Contact from "./Component/Others/Contact";
+import Aboutus from "./Component/Others/Aboutus";
 import axios from "axios";
+import Scrolltotop from "./Component/Others/Scrolltotop";
+import Cdashboard from "./Component/ClientComponent/Cdashboard";
 function App() {
   const [email, setEmail] = useState(null);
   const [password, setPass] = useState(null);
@@ -34,7 +36,17 @@ function App() {
   }
   return (
     <div>
+      <Scrolltotop/>
       <Switch>
+      <Route path="/client">
+         <Cdashboard/>
+        </Route>
+      <Route path="/About-us">
+          <Aboutus/>
+        </Route>
+      <Route path="/contact">
+          <Contact/>
+        </Route>
       <Route path="/pricing">
           <Pricing />
         </Route>

@@ -112,7 +112,7 @@ a[aria-expanded="true"] {
   margin: 40px 0;
 }
 /* <forms> */
-.input-icons .icon {
+.input-icons .icon{
   position: absolute;
 }
 
@@ -179,6 +179,7 @@ h2 {
 .card {
   border: black;
   margin: 10px;
+  height: auto!important;
 }
 .card-body {
   border-color: none;
@@ -341,11 +342,10 @@ ul ul a {
   border-radius: 8px;
   font-weight: 600;
 }
-#thirdrow {
+
   /* padding-top: 40px;
     padding-right: 5px; */
-  padding: 40px 5px 0px 290px;
-}
+  /* padding: 40px 5px 0px 290px; */
 .third img {
   height: 600px;
   width: 500px;
@@ -671,10 +671,7 @@ code {
   border-bottom: 0.5px solid #6c757d;
 }
 /* {CARD} */
-.card {
-  /* box-shadow: 0 8px 6px -6px #6c757d; */
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
+
 .card span {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
@@ -901,11 +898,11 @@ code {
   text-transform: lowercase;
 }
 .offlineprocess,
-.npsprocess,.salessection {
+.npsprocess,.salessection, .howaboutus {
   color: #00e97b;
   padding: 70px 0px !important;
 }
-.offlineprocess .card {
+.offlineprocess .card, .howaboutus .card {
   background-color: #004d40 !important;
   color: #00e97b !important;
   height: 300px;
@@ -913,6 +910,7 @@ code {
 }
 .campsection .card .icon,
 .salessection .features .icon, .offlineprocess .icon,
+.howaboutus .icon,
 .npssection .icon,
 .npsprocess .icon,
 .market .icon,
@@ -922,22 +920,22 @@ code {
   background-color: #00e97b !important;
   color: #004d40 !important;
 }
-.offlineprocess .card-body h5 {
+.offlineprocess .card-body h5 ,.howaboutus .card-body h5 {
   color: #00e97b !important;
 }
-.offlineprocess .card-body p {
+.offlineprocess .card-body p, .howaboutus .card-body p {
   color: #e0f2f1 !important;
   text-transform: lowercase;
 }
-.offlineprocess .section-title h4 {
+.offlineprocess .section-title h4, .howaboutus .card-body h4 {
   font-size: 35px;
   font-weight: 600;
 }
-.offlineprocess .section-title h6 {
+.offlineprocess .section-title h6, .howaboutus .card-body h6 {
   font-size: 20px;
   font-weight: 500;
 }
-.offlineprocess .section-title p {
+.offlineprocess .section-title p, .howaboutus .section-title p {
   font-weight: 400;
 }
 /* {nps survey} */
@@ -1118,7 +1116,7 @@ code {
   height: 300px;
 }
 /* Pricing */
-.pricing{
+.pricing, .contact, .aboutus{
   padding: 150px 100px 150px 100px;
   color: #00e97b;
 }
@@ -1361,4 +1359,91 @@ code {
   background-color: #00e97b;
   color: #004d40;
   padding: 20px;
+}
+.aboutcontact .card{
+height: 300px;
+}
+/* <scroll to top> */
+.scroll-to-top {
+  position: fixed;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  animation: fadeIn 700ms ease-in-out 1s both;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* <client> */
+.clientdashboard .nav-pills .nav-link.active {
+  color: #fff;
+  background-color: #00e97b!important;
+}
+.clientdashboard .nav-pills .nav-link{
+  padding: 20px;
+  text-align: start!important;
+}
+
+.clientdashboard .nav-pills button{
+  color: #0f131f!important;
+  font-size: 18px;
+  font-weight: 600;
+}
+.clientdashboard .card{
+  height: 150px;
+}
+.clientdashboard .card .card-title{
+  text-transform: capitalize ;
+  font-weight: 600;
+}
+.clientdashboard .card .card-text{
+  text-transform: lowercase;
+}
+.clientstat .card{
+  height: 110px;
+}
+.clientstat .card h4{
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.clientstat .card h1{
+  font-weight: 700;
+}
+
+/* <client map> */
+.App{
+  padding: 0 0 0 300px!important;
+}
+.bg-pink{
+  background-color: #FF69B4!important;
+}
+.bg-indigo{
+  background-color: #4b0082!important;
+}
+.bkg-success{
+  background-color: #00e97b!important;
+}
+.bton-success{
+  background-color: #00e97b!important;
+}
+.clientable .card{
+height: 500px;
+z-index:  -1;
+}
+.clientstatistics .card{
+  height: 500px;
+z-index: -1;
+}
+.clienthistory .card{
+  height: auto
+}
+.card{
+  height: auto;
 }
