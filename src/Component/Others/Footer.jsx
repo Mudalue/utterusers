@@ -45,13 +45,13 @@ const Footer = () => {
               <h5 class="text-light footer-head">Company</h5>
               <ul class="list-unstyled footer-list">
                 <li>
-                  <a href="about-us.html" class="text-foot">
+                  <a href="/about-us" class="text-foot">
                    <ChevronRight/>
                     About us
                   </a>
                 </li>
                 <li>
-                  <a href="contact-us.html" class="text-foot">
+                  <a href="/contact" class="text-foot">
                   <ChevronRight/>
                     Contact Us
                   </a>

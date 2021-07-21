@@ -17,6 +17,7 @@ import { Login, Register } from "../helpers/API";
 const Home = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+<<<<<<< HEAD
   const [loginRes, setLoginRes] = useState(null);
 
   const [regMail, setRegMail] = useState(null);
@@ -54,6 +55,30 @@ const Home = () => {
   const newUser = async (e) => {
     e.preventDefault();
     const response = await Register({ email: regMail, password: regPass });
+=======
+  const [loginmail, setLoginmail] = useState(null);
+  const [loginpass, setLoginpass] = useState(null);
+  
+
+  const submitLogin = async (e) => {
+    e.preventDefault();
+    const relay = await axios.post(
+      "https://utteruser.herokuapp.com/api/v1/users/login",
+      { loginmail, loginpass }
+    );
+    relay.status === "success"
+      ? (window.location.href = "/dashboard")
+      : alert("invalid credentials");
+    console.log (relay);
+  };
+ 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await axios.post(
+      "https://utteruser.herokuapp.com/api/v1/users/register",
+      { email, password }
+    );
+>>>>>>> 91ee88bc35885777f014aa800c8b38d5934a2192
     console.log(response);
   };
   return (
@@ -320,7 +345,7 @@ const Home = () => {
             </div>
           </div>
           <div className="row " id="thirdrow">
-            <div className="col-md-8 ">
+            <div className="col-md-8">
               <div className="row">
                 <div className="col-md-6 col-12">
                   <div class="d-flex pt-4 pb-2">
@@ -558,7 +583,11 @@ const Home = () => {
           <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header text-center p-4">
+<<<<<<< HEAD
                 {}
+=======
+                
+>>>>>>> 91ee88bc35885777f014aa800c8b38d5934a2192
                 <h3 class="modal-title" id="regBackdropLabel">
                   Registration
                 </h3>
@@ -579,7 +608,11 @@ const Home = () => {
                     <form
                       className="p-5"
                       style={{ maxWidth: "450px", margin: "auto" }}
+<<<<<<< HEAD
                       onSubmit={newUser}
+=======
+                      onSubmit={handleSubmit}
+>>>>>>> 91ee88bc35885777f014aa800c8b38d5934a2192
                     >
                       <div className="row">
                         <div className="col-md-12">
@@ -591,7 +624,11 @@ const Home = () => {
                             className="input-field form-control"
                             placeholder="Enter Email"
                             onChange={({ target: { value } }) =>
+<<<<<<< HEAD
                               setRegMail(value)
+=======
+                              setEmail(value)
+>>>>>>> 91ee88bc35885777f014aa800c8b38d5934a2192
                             }
                           />
                         </div>
@@ -606,7 +643,11 @@ const Home = () => {
                             className="input-field form-control"
                             placeholder="Enter password"
                             onChange={({ target: { value } }) =>
+<<<<<<< HEAD
                               setRegPass(value)
+=======
+                              setPassword(value)
+>>>>>>> 91ee88bc35885777f014aa800c8b38d5934a2192
                             }
                           />
                         </div>
@@ -674,7 +715,11 @@ const Home = () => {
                             className="input-field form-control"
                             placeholder="Enter Email"
                             onChange={({ target: { value } }) =>
+<<<<<<< HEAD
                               setEmail(value)
+=======
+                              setLoginmail(value)
+>>>>>>> 91ee88bc35885777f014aa800c8b38d5934a2192
                             }
                           />
                         </div>
@@ -689,7 +734,11 @@ const Home = () => {
                             className="input-field form-control"
                             placeholder="Enter password"
                             onChange={({ target: { value } }) =>
+<<<<<<< HEAD
                               setPassword(value)
+=======
+                              setLoginpass(value)
+>>>>>>> 91ee88bc35885777f014aa800c8b38d5934a2192
                             }
                           />
                         </div>

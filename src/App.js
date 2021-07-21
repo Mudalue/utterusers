@@ -18,13 +18,35 @@ import CampaignHome from "./Component/CampaignHome";
 import Pricing from "./Component/Pricing";
 import Employeexp from "./Component/HomeComponents/Employeexp";
 import Startasurvey from "./Component/Modals/Startasurvey";
+<<<<<<< HEAD
 
 import { ProtectedRoute } from "./Component/ProtectedRoute";
+=======
+import Contact from "./Component/Others/Contact";
+import Aboutus from "./Component/Others/Aboutus";
+import axios from "axios";
+import Scrolltotop from "./Component/Others/Scrolltotop";
+import Cdashboard from "./Component/ClientComponent/Cdashboard";
+>>>>>>> 91ee88bc35885777f014aa800c8b38d5934a2192
 function App() {
   return (
     <div>
+      <Scrolltotop/>
       <Switch>
+<<<<<<< HEAD
         <Route path="/pricing">
+=======
+      <Route path="/client">
+         <Cdashboard/>
+        </Route>
+      <Route path="/About-us">
+          <Aboutus/>
+        </Route>
+      <Route path="/contact">
+          <Contact/>
+        </Route>
+      <Route path="/pricing">
+>>>>>>> 91ee88bc35885777f014aa800c8b38d5934a2192
           <Pricing />
         </Route>
         <Route path="/employee-experience">

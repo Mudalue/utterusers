@@ -7,7 +7,7 @@ const Contactusjumbotron = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h2>Have a question? Contact us</h2>
+              <h2 className="text-light">Have a question? Contact us</h2>
               <p>
                 {" "}
                 We are always available for you, you can contact us or message
