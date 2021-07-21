@@ -11,27 +11,51 @@ import {
 } from "react-feather";
 import { Link } from "react-router-dom";
 import Contactusjumbotron from "./Others/Contactusjumbotron";
-
-import axios from "axios";
 import Footer from "./Others/Footer";
-const Home = () => {
-const[email, setEmail] = useState(null);
-const[password, setPassword] = useState(null);
-const [loginmail, setLoginmail] = useState(null);
-const [loginpass, setLoginpass] = useState(null);
+import { Login, Register } from "../helpers/API";
 
-const submitLogin = async (e)=>{
-  e.preventDefault();
-  const relay = axios.post("https://utteruser.herokuapp.com/api/v1/users/login", {email, password});
-loginmail === email && loginpass === password ? window.location.href="/dashboard" : alert("invalid credentials")
-  console.log=(relay)
-}
-const[feedback, setFeedback] = useState("");
- const handleSubmit= async(e)=>{
-   e.preventDefault();
-   const response= axios.post("https://utteruser.herokuapp.com/api/v1/users/register", {email, password});
-   console.log(response)
- }
+const Home = () => {
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+  const [loginRes, setLoginRes] = useState(null);
+
+  const [regMail, setRegMail] = useState(null);
+  const [regPass, setRegPass] = useState(null);
+
+  const submitLogin = async (e) => {
+    e.preventDefault();
+    setLoginRes(
+      <div className="alert alert-primary text-center">
+        checking your credentials...{" "}
+      </div>
+    );
+    const data = await Login({ email, password });
+
+    if (data.status === "success") {
+      // set token to local storage
+      localStorage.setItem("__magnumpi", data.hash);
+      setLoginRes(
+        <div className="alert alert-success text-center">
+          Login Successful, please wait!
+        </div>
+      );
+      window.location.href = "/dashboard";
+    } else {
+      setLoginRes(
+        <div className="alert alert-danger text-center">
+          Invalid Credentails.{" "}
+        </div>
+      );
+    }
+  };
+
+  const [feedback, setFeedback] = useState("");
+
+  const newUser = async (e) => {
+    e.preventDefault();
+    const response = await Register({ email: regMail, password: regPass });
+    console.log(response);
+  };
   return (
     <>
       <div className="starter">
@@ -180,17 +204,17 @@ const[feedback, setFeedback] = useState("");
             <div className="d-flex justify-content-end">
               <button
                 type="button"
-                class="btn btn-success me-3" 
+                class="btn btn-success me-3"
                 data-bs-toggle="modal"
                 data-bs-target="#regModal"
               >
                 Register{" "}
               </button>
               <button
-                 type="button"
-                 class="btn btn-warning me-3" 
-                 data-bs-toggle="modal"
-                 data-bs-target="#loginModal"
+                type="button"
+                class="btn btn-warning me-3"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
               >
                 Sign in
               </button>
@@ -534,13 +558,94 @@ const[feedback, setFeedback] = useState("");
           <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header text-center p-4">
-                {
-                  
-                }
+                {}
                 <h3 class="modal-title" id="regBackdropLabel">
                   Registration
                 </h3>
-                
+
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div className="row ">
+                  <div className="col-md-6 bg-success pl-3">
+                    <img src="./images/plogin.svg" />
+                  </div>
+                  <div className="col-md-6">
+                    <form
+                      className="p-5"
+                      style={{ maxWidth: "450px", margin: "auto" }}
+                      onSubmit={newUser}
+                    >
+                      <div className="row">
+                        <div className="col-md-12">
+                          <label for="email" className="my-2">
+                            Email
+                          </label>
+                          <input
+                            type="email"
+                            className="input-field form-control"
+                            placeholder="Enter Email"
+                            onChange={({ target: { value } }) =>
+                              setRegMail(value)
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div className="row">
+                        <div className="col-md-12">
+                          <label for="email" className="my-2">
+                            Password
+                          </label>
+                          <input
+                            type="password"
+                            className="input-field form-control"
+                            placeholder="Enter password"
+                            onChange={({ target: { value } }) =>
+                              setRegPass(value)
+                            }
+                          />
+                        </div>
+                      </div>
+                      <div className="row py-4">
+                        <div className="col-md-12">
+                          <button
+                            type="submit"
+                            className="btn btn-warning btn-lg"
+                            style={{ width: "100%" }}
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="modal fade"
+          id="loginModal"
+          data-bs-backdrop="static"
+          data-bs-keyboard="false"
+          tabindex="-1"
+          aria-labelledby="loginBackdropLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header text-center p-4">
+                {}
+                <h3 class="modal-title" id="loginBackdropLabel">
+                  Login
+                </h3>
+
                 <button
                   type="button"
                   class="btn-close"
@@ -565,11 +670,11 @@ const[feedback, setFeedback] = useState("");
                             Email
                           </label>
                           <input
-                          type="email"
+                            type="email"
                             className="input-field form-control"
                             placeholder="Enter Email"
-                            onChange={
-                              ({target: {value}})=>setEmail(value)
+                            onChange={({ target: { value } }) =>
+                              setEmail(value)
                             }
                           />
                         </div>
@@ -580,23 +685,24 @@ const[feedback, setFeedback] = useState("");
                             Password
                           </label>
                           <input
-                          type="password"
+                            type="password"
                             className="input-field form-control"
                             placeholder="Enter password"
-                            onChange={
-                              ({target: {value}})=>setPassword(value)
+                            onChange={({ target: { value } }) =>
+                              setPassword(value)
                             }
                           />
                         </div>
                       </div>
                       <div className="row py-4">
                         <div className="col-md-12">
+                          {loginRes && loginRes}
                           <button
-                          type="submit"
+                            type="submit"
                             className="btn btn-warning btn-lg"
                             style={{ width: "100%" }}
                           >
-                            Submit
+                            Login
                           </button>
                         </div>
                       </div>
@@ -604,93 +710,6 @@ const[feedback, setFeedback] = useState("");
                   </div>
                 </div>
               </div>
-            
-            </div>
-          </div>
-        </div>
-        <div
-          class="modal fade"
-          id="loginModal"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabindex="-1"
-          aria-labelledby="loginBackdropLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header text-center p-4">
-                {
-                  
-                }
-                <h3 class="modal-title" id="loginBackdropLabel">
-                  Login
-                </h3>
-                
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <div className="row ">
-                  <div className="col-md-6 bg-success pl-3">
-                    <img src="./images/plogin.svg" />
-                  </div>
-                  <div className="col-md-6">
-                    <form
-                      className="p-5"
-                      style={{ maxWidth: "450px", margin: "auto" }}
-                      onSubmit={handleSubmit}
-                    >
-                      <div className="row">
-                        <div className="col-md-12">
-                          <label for="email" className="my-2">
-                            Email
-                          </label>
-                          <input
-                          type="email"
-                            className="input-field form-control"
-                            placeholder="Enter Email"
-                            onChange={
-                              ({target: {value}})=>setLoginmail(value)
-                            }
-                          />
-                        </div>
-                      </div>
-                      <div className="row">
-                        <div className="col-md-12">
-                          <label for="email" className="my-2">
-                            Password
-                          </label>
-                          <input
-                          type="password"
-                            className="input-field form-control"
-                            placeholder="Enter password"
-                            onChange={
-                              ({target: {value}})=>setLoginpass(value)
-                            }
-                          />
-                        </div>
-                      </div>
-                      <div className="row py-4">
-                        <div className="col-md-12">
-                          <button
-                          type="submit"
-                            className="btn btn-warning btn-lg"
-                            style={{ width: "100%" }}
-                          >
-                            Submit
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            
             </div>
           </div>
         </div>
