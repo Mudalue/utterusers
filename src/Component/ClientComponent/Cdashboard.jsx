@@ -992,7 +992,7 @@ const Cdashboard = () => {
                                     </thead>
                                     <tbody>
                                       <tr>
-                                        <td>Demogrpy A</td>
+                                        <td>Demograpy A</td>
                                         <td>Marketing</td>
                                         <td>aug v@hotmail.com</td>
                                       </tr>

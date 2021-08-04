@@ -231,7 +231,7 @@ const Home = () => {
             </div>
             <div className="row">
               <div className="col-md-12">
-                <p className="lh-base">
+                {/* <p className="lh-base">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   <br />
                   Illum ipsa ip sam dolorum ratione itaque tempora quos
@@ -240,7 +240,7 @@ const Home = () => {
                   <br />
                   nemo officiis eos mollitia.
                   <br />
-                </p>
+                </p> */}
               </div>
               <div className="row">
                 <div className="col-md-12  firstbutton">
@@ -280,14 +280,7 @@ const Home = () => {
               <h5>Get the right feed back</h5>
               <img src="images\idea.svg" className="img-fluid" alt="" />
               <p className="lh-lg">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius
-                officiis quisquam, quia es t quidem fugiat dignissimos
-                perspiciatis quam ipsam porro earum! Sequi praesentium dolorum
-                dolorem beatae. Mollitia labore esse dolorem. Lorem ipsum dolor
-                sit amet consectetur, adipisicing elit. Iure, amet ut, magni
-                fugiat ipsam illo corporis unde ducimus, explicabo at voluptatem
-                voluptate deleniti omnis ullam molestiae fuga accusamus labore
-                consequuntur?
+              Access to the users that fit into your demograpy and target market.
               </p>
               <button className="btn btn-success btn-lg">Learn more</button>
             </div>
@@ -295,14 +288,7 @@ const Home = () => {
               <h5>Earn extra funds</h5>
               <img src="images\Section_2_2.svg" className="img-fluid" alt="" />
               <p className="lh-lg">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eius
-                officiis quisquam, quia es t quidem fugiat dignissimos
-                perspiciatis quam ipsam porro earum! Sequi praesentium dolorum
-                dolorem beatae. Mollitia labore esse dolorem. Lorem ipsum dolor
-                sit amet consectetur, adipisicing elit. Iure, amet ut, magni
-                fugiat ipsam illo corporis unde ducimus, explicabo at voluptatem
-                voluptate deleniti omnis ullam molestiae fuga accusamus labore
-                consequuntur?
+              Earn cash and crypto currency for giving your opinions and feedback.
               </p>
               <button className="btn btn-success btn-lg">Learn more</button>
             </div>

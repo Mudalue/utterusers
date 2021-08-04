@@ -1,5 +1,5 @@
 import axios from "axios";
-import setCookie from "set-cookie-parser";
+
 
 const URL = "http://www.localhost:5000/api/v1";
 // const URL = "https://utteruser.herokuapp.com/api/v1";
@@ -58,6 +58,6 @@ export const singleCampaign = async(data_)=>{
     })
     return data;
   } catch (error) {
-    return (error: error.message);
+    return {error: error.message};
   }
 }
